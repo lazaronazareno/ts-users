@@ -1,8 +1,36 @@
 #root {
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
   text-align: center;
   width: 100%;
+}
+
+header {
+  display: flex;
+  gap: .5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+header h1 {
+  margin-right: auto;
+  font-size: 2.5rem;
+}
+
+header input, select {
+  padding: .7rem;
+  border-radius: .5rem;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+thead {
+  background-color: white;
+  color: black;
+  text-align: left;
 }
 
 /* Para identificar si el indice es par o impar */
@@ -17,4 +45,54 @@
 
 .pointer {
   cursor: pointer;
+}
+
+.user {
+  border-bottom: 1px solid #555;
+}
+
+.user__user {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding: .5rem 0;
+  padding-left: .5rem;
+}
+
+.user__user img {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 2rem;
+}
+
+.user__user div {
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+  text-align: left;
+}
+
+.user__user div p:first-child{
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.user__user div p:last-child{
+  font-size: .8rem;
+  color: #747474;
+}
+
+.user__flag {
+  width: 2rem;
+}
+
+.user__delete {
+  border: 1px solid red;
+  margin-right: .5rem;
+}
+
+.user__delete:hover {
+  background-color: red;
+  color: white;
+  border: 1px solid white;
 }

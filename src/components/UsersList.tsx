@@ -1,4 +1,5 @@
 import { SortBy, type User } from '../types.d'
+import UserComponent from './User'
 
 interface Props {
   users: User[]
@@ -12,37 +13,21 @@ export function UserList({ users, showColors, handleDelete, handleChangeSort }: 
     <table width='100%'>
       <thead>
         <tr>
-          <th>Foto</th>
-          <th className='pointer' onClick={() => { handleChangeSort(SortBy.NAME) }}>Nombre</th>
-          <th className='pointer' onClick={() => { handleChangeSort(SortBy.LAST) }}>Apellido</th>
-          <th className='pointer' onClick={() => { handleChangeSort(SortBy.COUNTRY) }}>País</th>
-          <th>Acciones</th>
+          <th>User</th>
+          <th className='pointer' onClick={() => { handleChangeSort(SortBy.NAME) }}>Name</th>
+          <th className='pointer' onClick={() => { handleChangeSort(SortBy.LAST) }}>Last Name</th>
+          <th className='pointer' onClick={() => { handleChangeSort(SortBy.COUNTRY) }}>Country</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
         {
           users.map((user, index) => {
-            const backgroundColor = index % 2 === 0 ? 'black' : 'gray'
+            const backgroundColor = index % 2 === 0 ? '#161616' : '#2c2c2c'
             const color = showColors ? backgroundColor : 'transparent'
 
             return (
-              <tr key={user.email} style={{ backgroundColor: color }}>
-                <td>
-                  <img src={user.picture.thumbnail} alt={user.name.title} />
-                </td>
-                <td>
-                  {user.name.first}
-                </td>
-                <td>
-                  {user.name.last}
-                </td>
-                <td>
-                  {user.location.country}
-                </td>
-                <td>
-                  <button onClick={() => { handleDelete(user.email) }}>Borrar</button>
-                </td>
-              </tr>
+              <UserComponent user={user} handleDelete={handleDelete} color={color} key={user.email} />
             )
           }
           )

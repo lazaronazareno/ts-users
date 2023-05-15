@@ -100,5 +100,7 @@ export enum SortBy {
   NONE = 'none',
   NAME = 'name',
   LAST = 'last',
-  COUNTRY = 'country'
+  COUNTRY = 'country',
+  EMAIL = 'email',
+  USER = 'username'
 }

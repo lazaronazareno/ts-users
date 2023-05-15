@@ -15,11 +15,6 @@ function App() {
     setShowColors(!showColors)
   }
 
-  const toggleSortByCountry = () => {
-    const newSorting = sorting === SortBy.NONE ? SortBy.COUNTRY : SortBy.NONE
-    setSorting(newSorting)
-  }
-
   const handleDelete = (email: string) => {
     const filteredUsers = users.filter((user) => user.email !== email)
     setUsers(filteredUsers)
@@ -75,22 +70,35 @@ function App() {
       return [...filteredUsers].sort((a, b) => { return a.name.last.localeCompare(b.name.last) })
     }
 
+    if (sorting === SortBy.EMAIL) {
+      return [...filteredUsers].sort((a, b) => { return a.email.localeCompare(b.email) })
+    }
+
+    if (sorting === SortBy.USER) {
+      return [...filteredUsers].sort((a, b) => { return a.login.username.localeCompare(b.login.username) })
+    }
+
     return filteredUsers
   }, [filteredUsers, sorting])
 
   return (
     <>
-      <h1>Prueba tecnica</h1>
       <header>
+        <h1>Users</h1>
         <button onClick={toggleColors}>
-          Colorear filas
+          Style
         </button>
-        <button onClick={toggleSortByCountry}>
-          {sorting === SortBy.COUNTRY ? 'Orden por defecto' : 'Ordenar por pais'}
-        </button>
-        <button onClick={handleReset}>Resetear estado</button>
+        <button onClick={handleReset}>Reset</button>
 
-        <input type="text" placeholder="Filtrar por Pais" onChange={(e) => { setFilterCountry(e.target.value) }} />
+        <input type="text" placeholder="Filter by country" onChange={(e) => { setFilterCountry(e.target.value) }} />
+        <select onChange={(e) => { handleChangeSort(e.target.value as SortBy) }}>
+          <option value={SortBy.NONE}>None</option>
+          <option value={SortBy.NAME}>Name</option>
+          <option value={SortBy.LAST}>Last Name</option>
+          <option value={SortBy.COUNTRY}>Country</option>
+          <option value={SortBy.EMAIL}>Email</option>
+          <option value={SortBy.USER}>UserName</option>
+        </select>
       </header>
       <UserList handleChangeSort={handleChangeSort} handleDelete={handleDelete} showColors={showColors} users={sortedUsers} />
     </>
